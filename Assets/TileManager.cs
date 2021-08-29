@@ -28,24 +28,40 @@ public class TileManager : MonoBehaviour
     {
         //Typeと画像の設定がされる
         type = tileType;
-        SetImage(type);
+        SetImage(tileType);
     }
 
     //画像を設定
-    void SetImage(TileType type)
+    void SetImage(TileType tileType)
     {
         if (type == TileType.DEATH)
         {
             spriteRenderer.sprite = deathSprite;
         }
-        if (type == TileType.ALIVE)
+        else if (type == TileType.ALIVE)
         {
             spriteRenderer.sprite = aliveSprite;
         }
     }
 
-    void Update()
+    //クリックしたら実行する
+    public void OnTile()
     {
-        
+        ReverseTile();
+    }
+
+    //反転させる
+    void ReverseTile()
+    {
+        if (type == TileType.DEATH)
+        {
+            //Tile情報と画像情報を取得して変更する
+            SetType(TileType.ALIVE);
+        }
+        else if (type == TileType.ALIVE)
+        {
+            //Tile情報と画像情報を取得して変更する
+            SetType(TileType.DEATH);
+        }
     }
 }
