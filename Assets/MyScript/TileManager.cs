@@ -17,14 +17,15 @@ public class TileManager : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    void Start()
+    //Start関数だと遅いのでタイルテーブルの後にSpriteRendererが、
+    //実行されてしまうためAwakeにする
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        SetType(TileType.ALIVE);
     }
 
     //Typeを設定
-    void SetType(TileType tileType)
+    public void SetType(TileType tileType)
     {
         //Typeと画像の設定がされる
         type = tileType;
